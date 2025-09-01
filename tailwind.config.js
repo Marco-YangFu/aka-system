@@ -1,14 +1,15 @@
 /** @type {import('tailwindcss').Config} */
+import tailwindcssAnimate from 'tailwindcss-animate';
+
 export default {
   darkMode: 'class',
   content: [
     './index.html',
     './src/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}', // shadcn が生成するパス
+    './components/**/*.{ts,tsx}',
   ],
   theme: {
     extend: {
-      // shadcn 推奨のCSS変数ベース（必要最低限）
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
@@ -37,5 +38,5 @@ export default {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [tailwindcssAnimate],
 };

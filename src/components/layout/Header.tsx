@@ -1,5 +1,6 @@
-import { Separator } from '@/components/ui/separator';
 import { ThemeToggle } from './ThemeToggle';
+
+import { Separator } from '@/components/ui/separator';
 
 export function Header() {
   return (

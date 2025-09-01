@@ -1,7 +1,8 @@
-import { jsx as _jsx, jsxs as _jsxs } from 'react/jsx-runtime';
 import { StrictMode } from 'react';
+import { jsx as _jsx, jsxs as _jsxs } from 'react/jsx-runtime';
 import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
 import AppShell from '@/components/layout/Appshell';
 import '@/index.css';
 function Page({ title }) {

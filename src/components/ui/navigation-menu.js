@@ -1,8 +1,9 @@
-import { jsx as _jsx, jsxs as _jsxs } from 'react/jsx-runtime';
-import * as React from 'react';
 import * as NavigationMenuPrimitive from '@radix-ui/react-navigation-menu';
 import { cva } from 'class-variance-authority';
 import { ChevronDown } from 'lucide-react';
+import * as React from 'react';
+import { jsx as _jsx, jsxs as _jsxs } from 'react/jsx-runtime';
+
 import { cn } from '@/lib/utils';
 const NavigationMenu = React.forwardRef(
   ({ className, children, ...props }, ref) =>

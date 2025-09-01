@@ -1,4 +1,5 @@
 import { jsx as _jsx, jsxs as _jsxs } from 'react/jsx-runtime';
+
 import { Header } from './Header';
 import { Sidebar } from './Sidebar';
 export default function AppShell({ children }) {

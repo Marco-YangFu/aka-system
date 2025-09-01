@@ -1,6 +1,7 @@
-import { jsx as _jsx } from 'react/jsx-runtime';
-import * as React from 'react';
 import * as SeparatorPrimitive from '@radix-ui/react-separator';
+import * as React from 'react';
+import { jsx as _jsx } from 'react/jsx-runtime';
+
 import { cn } from '@/lib/utils';
 const Separator = React.forwardRef(
   (

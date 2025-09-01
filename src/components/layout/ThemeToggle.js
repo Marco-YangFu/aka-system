@@ -1,6 +1,7 @@
-import { jsx as _jsx } from 'react/jsx-runtime';
-import { useEffect, useState } from 'react';
 import { Sun, Moon } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { jsx as _jsx } from 'react/jsx-runtime';
+
 import { Button } from '@/components/ui/button';
 export function ThemeToggle() {
   const [dark, setDark] = useState(

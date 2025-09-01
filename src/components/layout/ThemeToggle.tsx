@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
 import { Sun, Moon } from 'lucide-react';
+import { useEffect, useState } from 'react';
+
 import { Button } from '@/components/ui/button';
 
 export function ThemeToggle() {
@@ -21,7 +22,7 @@ export function ThemeToggle() {
       variant="ghost"
       size="icon"
       onClick={() => setDark((d) => !d)}
-      aria-label="Toggle theme"
+      aria-label="テーマ切替"
     >
       {dark ? <Sun /> : <Moon />}
     </Button>

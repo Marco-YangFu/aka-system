@@ -1,6 +1,8 @@
 import { jsx as _jsx, jsxs as _jsxs } from 'react/jsx-runtime';
-import { Separator } from '@/components/ui/separator';
+
 import { ThemeToggle } from './ThemeToggle';
+
+import { Separator } from '@/components/ui/separator';
 export function Header() {
   return _jsxs('header', {
     className: 'h-14 flex items-center px-4 gap-3 border-b bg-background',
