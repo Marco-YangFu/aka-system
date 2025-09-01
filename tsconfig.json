@@ -11,7 +11,8 @@
     "skipLibCheck": true,
     "types": ["vite/client"],
     "baseUrl": ".",
-    "paths": { "@/*": ["src/*"] }
+    "paths": { "@/*": ["src/*"] },
+    "forceConsistentCasingInFileNames": true
   },
   "include": ["src"]
 }

@@ -8,6 +8,15 @@ export default {
     './src/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
   ],
+  safelist: [
+    'w-12',
+    'h-12',
+    'w-10',
+    'h-10',
+    'shrink-0',
+    'rounded-full',
+    'object-cover',
+  ],
   theme: {
     extend: {
       colors: {

@@ -55,7 +55,7 @@ export default function EmployeesPage() {
           return (
             <div key={e.id} className="border rounded p-3 bg-card">
               <div className="flex items-center gap-3">
-                <Avatar className="w-12 h-12 shrink-0">
+                <Avatar style={{ width: 48, height: 48 }} className="shrink-0">
                   {url ? (
                     <AvatarImage
                       src={url}
