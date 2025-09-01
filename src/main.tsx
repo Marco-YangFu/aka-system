@@ -3,6 +3,8 @@ import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import AppShell from '@/components/layout/Appshell';
+import EmployeesPage from '@/features/employees/EmployeePage';
+
 import '@/index.css';
 
 function Page({ title }: { title: string }) {
@@ -27,7 +29,7 @@ const router = createBrowserRouter([
     path: '/employees',
     element: (
       <AppShell>
-        <Page title="社員" />
+        <EmployeesPage />
       </AppShell>
     ),
   },
