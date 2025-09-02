@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import EmployeeDetailPage from './features/employees/EmployeesDetailPage';
 
 import AppShell from '@/components/layout/AppShell';
+import EmployeeEditPage from '@/features/employees/EmployeeEditPage';
 import EmployeeNewPage from '@/features/employees/EmployeeNewPage';
 import EmployeesPage from '@/features/employees/EmployeePage';
 import '@/index.css';
@@ -41,6 +42,14 @@ const router = createBrowserRouter([
     element: (
       <AppShell>
         <EmployeeDetailPage />
+      </AppShell>
+    ),
+  },
+  {
+    path: '/employees/:id/edit',
+    element: (
+      <AppShell>
+        <EmployeeEditPage />
       </AppShell>
     ),
   },
