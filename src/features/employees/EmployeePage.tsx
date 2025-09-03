@@ -1,8 +1,11 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 
+import CsvImportButton from '@/components/csv/CsvImportButton';
+import { validateRows } from '@/components/csv/validateCsv';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { supabase } from '@/lib/supabase';
+import { downloadEmployeeCsv, EmployeeRow } from '@/utils/exportCsv';
 
 type Employee = {
   id: string;
@@ -66,6 +69,33 @@ export default function EmployeesPage() {
   return (
     <div className="space-y-3">
       <h2 className="text-xl font-semibold">社員</h2>
+      <div className="flex items-center justify-end gap-2">
+        <CsvImportButton
+          onLoaded={(rows) => {
+            const { ok, ng } = validateRows(rows);
+            console.log('OK(先頭3)', ok.slice(0, 3));
+            console.table(ng);
+            alert(`検証結果: OK ${ok.length} / NG ${ng.length}`);
+            // 次ステップで: NG一覧をUI表示にする
+          }}
+        />
+        <button
+          className="px-3 py-2 rounded border"
+          onClick={() => {
+            // Employee -> EmployeeRow へ最小マッピング
+            const rows: EmployeeRow[] = (data ?? []).map((e) => ({
+              id: e.id,
+              name: e.name,
+              dept: e.dept ?? '',
+              email: e.email ?? '',
+              created_at: e.created_at,
+            }));
+            downloadEmployeeCsv(rows);
+          }}
+        >
+          CSV出力（表示中）
+        </button>
+      </div>
       <div className="grid gap-2">
         {data.map((e) => {
           const url = getAvatarUrl(e.avatar_path);
