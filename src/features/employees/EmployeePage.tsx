@@ -1,3 +1,4 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
@@ -18,10 +19,26 @@ const getAvatarUrl = (path?: string | null) =>
     : null;
 const initials = (name: string) => name.slice(0, 2); // 和文は先頭2文字で簡易に表記
 
+async function deleteEmployee(id: string) {
+  const { error } = await supabase.from('employees').delete().eq('id', id);
+  if (error) throw new Error(error.message);
+}
+
 export default function EmployeesPage() {
   const [data, setData] = useState<Employee[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const qc = useQueryClient();
+
+  const { mutate: remove, isPending } = useMutation({
+    mutationFn: deleteEmployee,
+    onSuccess: (_data, id) => {
+      // サーバー削除成功 ⇒ 画面からも同時に消去
+      setData((prev) => (prev ? prev.filter((e) => e.id !== id) : prev));
+      // キャッシュも無効化（他画面との整合）
+      qc.invalidateQueries({ queryKey: ['employees'] });
+    },
+  });
 
   useEffect(() => {
     (async () => {
@@ -73,6 +90,28 @@ export default function EmployeesPage() {
                   <div className="text-sm text-muted-foreground">
                     {e.dept ?? '部署無し'} ・ {e.email ?? '-'}
                   </div>
+                </div>
+                {/* ボタン群を右端に配置 */}
+                <div className="flex gap-2">
+                  <a href={`/employees/${e.id}`} className="underline text-sm">
+                    詳細
+                  </a>
+                  <a
+                    href={`/employees/${e.id}/edit`}
+                    className="underline text-sm"
+                  >
+                    編集
+                  </a>
+                  <button
+                    onClick={() => {
+                      if (!confirm('本当に削除しますか？')) return;
+                      remove(e.id);
+                    }}
+                    disabled={isPending}
+                    className="text-red-600 underline text-sm disabled:opacity-50"
+                  >
+                    削除
+                  </button>
                 </div>
               </div>
             </div>
